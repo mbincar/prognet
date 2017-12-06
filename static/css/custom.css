@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+body {
+	font-family: Roboto;
+	font-weight: 300;
+}
+
+#bg-hero {
+	background: url('http://i.dell.com/sites/imagecontent/app-merchandizing/responsive/LearnSegment/alienware/assets/en/PublishingImages/alienware-homepage/alienware-homepage-premigration-day01_Module-6-new.jpg');
+	background-attachment: fixed;
+}
+
+#bg-service {
+	background: url('http://cdn.dota2.com/apps/dota2/images/blog/play/bg_03.jpg') center center no-repeat;
+}
+
+.columns {
+	margin-top: -30px !important;
+}
+
+.is-size-2 {
+	font-size: 6rem !important;
+}
+
+#feature .column  {
+	border-left: 1px solid #aaa;
+}
+
+#feature .column .title {
+	border-bottom: 1px solid #aaa;
+}
+
+.shrink {
+	background-color: #333 !important;
+}
+
+.shrink .navbar-brand .navbar-item span {
+	opacity: 0;
+	margin-right:-100px;
+}
+
+.navbar-brand .navbar-item span {
+	transition: 1s;
+}
+
+.navbar-brand .navbar-item img {
+	height: 100px !important;
+	width: auto;
+}
+
+.navbar {
+	height: 50px !important;
+	max-height: 100px !important;
+}
+
+.navbar.is-black .navbar-start > a.navbar-item:hover, .navbar.is-black .navbar-start > a.navbar-item.is-active, .navbar.is-black .navbar-start .navbar-link:hover, .navbar.is-black .navbar-start .navbar-link.is-active, .navbar.is-black .navbar-end > a.navbar-item:hover, .navbar.is-black .navbar-end > a.navbar-item.is-active, .navbar.is-black .navbar-end .navbar-link:hover, .navbar.is-black .navbar-end .navbar-link.is-active {
+	background-color: transparent;
+	border-bottom: 1px solid #fff;
+	padding-bottom: 5px;
+	
+
+}
