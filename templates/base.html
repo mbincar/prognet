@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+    <!-- <link rel="stylesheet" href="../static/css/bulma-carousel.min.css"> -->
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+    {% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    {% endblock custom_css %}
+
+    <script src="{% static 'js/typed.js' %}"></script>
+</head>
+
+<body>
+
+    {% block hero %}
+    <!-- hero -->
+    <section class="hero is-fullheight" id="bg-hero">
+        <div class="hero-head">
+
+            {% block navbar %}
+            <!-- navbar -->
+
+            <nav class="navbar is-black is-fixed-top">
+                <div class="navbar-brand is-paddingless">
+                    <a class="navbar-item" href="https://bulma.io">
+                        <img src="{% static 'image/logo.png' %}" alt="" style="margin-right: 10px;">
+                        <span>
+                            GamingGears
+                        </span>
+                    </a>
+                    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+                <div id="navbarExampleTransparentExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="https://bulma.io/">
+                            About Us
+                        </a>
+                        <a href="" class="navbar-item">Products</a>
+                        <a href="" class="navbar-item">News</a>
+                    </div>
+
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <div class="field is-grouped">
+                                <p class="control">
+                                    <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="#">
+                                        <span class="icon">
+                                            <i class="fa fa-envelope-o"></i>
+                                        </span>
+                                        <span>
+                                            Contact Us
+                                        </span>
+                                    </a>
+                                </p>
+                                <p class="control">
+                                    <a class="button is-info" href="#">
+                                        <span class="icon">
+                                            <i class="fa fa-download"></i>
+                                        </span>
+                                        <span>Download</span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- End Navbar -->
+            {% endblock navbar %}
+
+        </div>
+        <div class="hero-body has-text-centered">
+            <div class="container">
+                <h1>
+                    <span class="is-size-2 title has-text-info">MV</span>
+                    <span class="is-size-2 has-text-grey-lighter"> GamingGears</span>
+                </h1>
+                <p class="is-size-1 has-text-white">We Sell
+                    <b>
+                        <span class="element"></span>
+                    </b>
+                </p>
+                <br>
+                <button class="button is-info is-outlined is-radiusless">Our Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- End Hero -->
+    {% endblock hero %}
+
+    {% block content %}
+
+    {% endblock content %}
+
+    {% block footer %}
+    <footer class="hero ">
+        <div class="hero-body is-medium">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p>
+                        <strong>MV Gaming Gears</strong> by Mbincar & Vincent. COPYRIGHT &copy
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% endblock footer %}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/carousel.min.js' %}"></script>
+</body>
+
+</html>
