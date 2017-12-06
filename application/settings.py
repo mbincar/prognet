@@ -86,19 +86,15 @@ WSGI_APPLICATION = 'application.wsgi.application'
 try:
     with open(str(os.path.join(BASE_DIR, '..', 'db-config.json'))) as target:
         db_config = json.load(target)
-except FileNotFoundError:
-    db_config = None
-
-if db_config:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': db_config["name"],
-            'USER': db_config["user"],
-            'PASSWORD': db_config["password"],
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': db_config["name"],
+                'USER': db_config["user"],
+                'PASSWORD': db_config["password"],
+            }
         }
-    }
-else:
+except FileNotFoundError:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
