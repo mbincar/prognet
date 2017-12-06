@@ -1,158 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" href="../static/css/bulma.css">
-	<!-- <link rel="stylesheet" href="../static/css/bulma-carousel.min.css"> -->
-	<link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../static/css/custom.css">
+{% extends "./base.html" %}
 
-	<script src="../static/js/typed.js"></script>
-</head>
-<body>
+{% load static %}
 
-
-	<!-- hero -->
-	<section class="hero is-fullheight" id="bg-hero">
-		<div class="hero-head">
-			
-	<!-- navbar -->
-
-	<nav class="navbar is-black is-fixed-top">
-  <div class="navbar-brand is-paddingless">
-    <a class="navbar-item" href="https://bulma.io">
-     <img src="../static/image/logo.png" alt="" style="margin-right: 10px;">
-     <span>
-     	GamingGears
-     </span>
-    </a>
-    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-
-  <div id="navbarExampleTransparentExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item" href="https://bulma.io/">
-        About Us
-      </a>
-      <a href="" class="navbar-item">Products</a>
-      <a href="" class="navbar-item">News</a>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="field is-grouped">
-          <p class="control">
-            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="#">
-              <span class="icon">
-                <i class="fa fa-envelope-o"></i>
-              </span>
-              <span>
-                Contact Us
-              </span>
-            </a>
-          </p>
-          <p class="control">
-            <a class="button is-info" href="#">
-              <span class="icon">
-                <i class="fa fa-download"></i>
-              </span>
-              <span>Download</span>
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-
-	<!-- End Navbar -->
-		</div>
-		<div class="hero-body has-text-centered">
-			<div class="container">
-				<h1><span class="is-size-2 title has-text-info">MV</span> <span class="is-size-2 has-text-grey-lighter"> GamingGears</span></h1>
-			<p class="is-size-1 has-text-white">We Sell <b><span class="element"></span></b></p>
-			<br>
-			<button class="button is-info is-outlined is-radiusless">Our Products</button>
-			</div>
-		</div>
-	</section>
-
-	<!-- End Hero -->
+{% block content %}
 <!-- Feature -->
 <section class="hero is-medium" id="feature">
 	<div class="hero-body">
-		<div class="container">
-			<div class="columns ">
-				<div class="column">
-					<h1 class="title is-4">
-						INNOVATION
-					</h1>
-					<p>
-						We push gaming limits—rigorously testing technology and partnering with forward-thinking companies like Steam and Oculus—to redefine the boundaries of our reality.
-					</p>
-				</div>
-				<div class="column">
-					<h1 class="title is-4">
-						ONE PASSION UNITES US ALL.
-					</h1>
-					<p>
-						Join the battle at MVGG Arena online. Get tips, free giveaways and a worldwide community of gamers, united by love of competition and passion for immersion.
-					</p>
-				</div>
-				<div class="column">
-					<h1 class="title is-4">
-						WE STARTED A MOVEMENT.
-					</h1>
-					<p>
-						We were first—to implement lightning-fast NVIDIA® graphics, to create mobile gaming machines that truly deliver. Here’s to the past, present and future of gaming.
-					</p>
-				</div>
+			<div class="container">
+					<div class="columns ">
+							<div class="column">
+									<h1 class="title is-4">
+											INNOVATION
+									</h1>
+									<p>
+											We push gaming limits—rigorously testing technology and partnering with forward-thinking companies like Steam and Oculus—to
+											redefine the boundaries of our reality.
+									</p>
+							</div>
+							<div class="column">
+									<h1 class="title is-4">
+											ONE PASSION UNITES US ALL.
+									</h1>
+									<p>
+											Join the battle at MVGG Arena online. Get tips, free giveaways and a worldwide community of gamers, united by love of competition
+											and passion for immersion.
+									</p>
+							</div>
+							<div class="column">
+									<h1 class="title is-4">
+											WE STARTED A MOVEMENT.
+									</h1>
+									<p>
+											We were first—to implement lightning-fast NVIDIA® graphics, to create mobile gaming machines that truly deliver. Here’s to
+											the past, present and future of gaming.
+									</p>
+							</div>
+					</div>
 			</div>
-		</div>
 	</div>
 </section>
 
 <!-- End Feature -->
+
 <section class="hero is-dark is-medium">
-		<div class="columns is-gapless is-paddingless">
+	<div class="columns is-gapless is-paddingless">
 			<div class="column">
-				<img src="../static/image/cropped.png" alt="">
+					<img src="{% static 'image/cropped.png' %}" alt="">
 			</div>
 			<div class="column">
-				<img src="../static/image/cropped2.png" alt="">
+					<img src="{% static 'image/cropped2.png' %}" alt="">
 			</div>
-		</div>
-		<div class="columns is-gapless is-paddingless">
+	</div>
+	<div class="columns is-gapless is-paddingless">
 			<div class="column">
-				<img src="../static/image/cropped3.png" alt="">
+					<img src="{% static 'image/cropped3.png' %}" alt="">
 			</div>
 			<div class="column">
-				<img src="../static/image/cropped4.png" alt="">
+					<img src="{% static 'image/cropped4.png' %}" alt="">
 			</div>
-		</div>
+	</div>
 	</div>
 </section>
-
-<footer class="hero ">
-	<div class="hero-body is-medium">
-  <div class="container">
-    <div class="content has-text-centered">
-      <p>
-        <strong>MV Gaming Gears</strong> by Mbincar & Vincent. COPYRIGHT &copy 
-      </p>
-    </div>
-  </div>
-	</div>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-
-<script src="../static/js/custom.js"></script>
-<script src="../static/js/carousel.min.js"></script>
-</body>
-</html>
+{% endblock content %}
