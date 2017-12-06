@@ -10,7 +10,7 @@ addons:
   chrome: stable
 
 env:
-  - DJANGO_SETTINGS_MODULE=mysite.settings.travisci
+  - DJANGO_SETTINGS_MODULE=application.settings.travisci
 
 before_install:
   - wget https://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip
