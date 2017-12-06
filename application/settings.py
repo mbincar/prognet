@@ -64,7 +64,7 @@ ROOT_URLCONF = 'application.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../../templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,18 +83,30 @@ WSGI_APPLICATION = 'application.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-with open(str(os.path.join(BASE_DIR, '../../../', 'db-config.json'))) as target:
-    db_config = json.load(target)
+try:
+    with open(str(os.path.join(BASE_DIR, '..', 'db-config.json'))) as target:
+        db_config = json.load(target)
+except FileNotFoundError:
+    db_config = None
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': db_config["name"],
-        'USER': db_config["user"],
-        'PASSWORD': db_config["password"],
+if db_config:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': db_config["name"],
+            'USER': db_config["user"],
+            'PASSWORD': db_config["password"],
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'prognet_db',
+            'USER': 'root',
+            'PASSWORD': '',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -164,7 +176,7 @@ LOGOUT_REDIRECT_URL = '/'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '../../static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, '../../../', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
