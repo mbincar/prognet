@@ -1,4 +1,3 @@
-import os
 from django.test.runner import DiscoverRunner
 import radish.main
 

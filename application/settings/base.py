@@ -64,7 +64,7 @@ ROOT_URLCONF = 'application.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, '../../templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,9 +83,7 @@ WSGI_APPLICATION = 'application.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-db_config = None
-
-with open(str(os.path.join(BASE_DIR, '..', 'db-config.json'))) as target:
+with open(str(os.path.join(BASE_DIR, '../../../', 'db-config.json'))) as target:
     db_config = json.load(target)
 
 DATABASES = {
@@ -140,6 +138,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 ACCOUNT_EMAIL_REQUIRED = True
 
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
 ACCOUNT_LOGOUT_ON_GET = True
 
 AUTHENTICATION_BACKENDS = [
@@ -151,8 +151,12 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 ACCOUNT_FORMS = {
-    'login': 'accounts.forms.LoginForm'
+    'login': 'accounts.forms.LoginForm',
+    'signup': 'accounts.forms.SignupForm',
 }
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -160,7 +164,7 @@ ACCOUNT_FORMS = {
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, '../../static'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '../../../', 'static')
