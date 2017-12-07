@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'application',
     'accounts.apps.AccountsConfig',
     'blog.apps.BlogConfig',
 ]
@@ -82,20 +83,26 @@ WSGI_APPLICATION = 'application.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-db_config = None
-
-with open(str(os.path.join(BASE_DIR, '..', 'db-config.json'))) as target:
-    db_config = json.load(target)
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': db_config["name"],
-        'USER': db_config["user"],
-        'PASSWORD': db_config["password"],
+try:
+    with open(str(os.path.join(BASE_DIR, '..', 'db-config.json'))) as target:
+        db_config = json.load(target)
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': db_config["name"],
+                'USER': db_config["user"],
+                'PASSWORD': db_config["password"],
+            }
+        }
+except FileNotFoundError:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'prognet_db',
+            'USER': 'root',
+            'PASSWORD': '',
+        }
     }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -139,6 +146,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 ACCOUNT_EMAIL_REQUIRED = True
 
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
 ACCOUNT_LOGOUT_ON_GET = True
 
 AUTHENTICATION_BACKENDS = [
@@ -150,8 +159,12 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 ACCOUNT_FORMS = {
-    'login': 'accounts.forms.LoginForm'
+    'login': 'accounts.forms.LoginForm',
+    'signup': 'accounts.forms.SignupForm',
 }
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
