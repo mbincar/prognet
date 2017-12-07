@@ -36,8 +36,10 @@
     </form>
     {% endblock form_body %}
 </div>
+{% block form_footer %}
 <p class="has-text-grey">
     <a href="{% url 'account_signup' %}">Sign Up</a> &nbsp;·&nbsp;
     <a href="#">Forgot Password</a> &nbsp;·&nbsp;
     <a href="#">Need Help?</a>
 </p>
+{% endblock form_footer %}

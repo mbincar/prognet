@@ -31,7 +31,7 @@
                 {% if form.errors %}
                 {% for error in form.non_field_errors %}
                 <div class="notification is-danger">
-                    <button class="delete"></button>
+                    <button class="delete" aria-controls="dismiss"></button>
                     {{ error }}
                 </div>
                 {% endfor %}
@@ -41,6 +41,9 @@
                 {% block form_body %}
                 {% endblock form_body %}
                 </div>
+                {% block form_footer %}
+
+                {% endblock form_footer %}
             </div>
             {% endblock content %}
     </section>
