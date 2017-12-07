@@ -19,7 +19,30 @@
         <div class="hero-body">
             <div class="container has-text-centered">
             {% block content %}
+            <div class="column is-4 is-offset-4">
+                {% block form_header %}
 
+                {% endblock form_header %}
+                <div class="box">
+                {% block form_image %}
+                {% endblock form_image %}
+
+                {% block form_error %}
+                {% if form.errors %}
+                {% for error in form.non_field_errors %}
+                <div class="notification is-danger">
+                    <button class="delete"></button>
+                    {{ error }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endif %}
+                {% endblock form_error %}
+
+                {% block form_body %}
+                {% endblock form_body %}
+                </div>
+            </div>
             {% endblock content %}
     </section>
 

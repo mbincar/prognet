@@ -1,44 +1,39 @@
 {% extends "base-auth.html" %}
 
-{% block content %}
 
-<div class="column is-4 is-offset-4">
-    <h3 class="title has-text-grey">Sign Up</h3>
-    <p class="subtitle has-text-grey">Sign up to register your account.</p>
-    <div class="box">
-        <figure class="avatar">
-            <img src="https://placehold.it/128x128">
-        </figure>
-        <form action="{% url 'account_signup' %}" method="post">
-            {% csrf_token %}
-            <div class="field">
-                <div class="control">
-                    {{ form.username }}
-                </div>
+{% block form_header %}
+<h3 class="title has-text-grey">Sign Up</h3>
+<p class="subtitle has-text-grey">Sign up to register your account.</p>
+{% endblock form_header %}
+<div class="box">
+    {% block form_body %}
+    <form action="{% url 'account_signup' %}" method="post">
+        {% csrf_token %}
+        <div class="field">
+            <div class="control">
+                {{ form.username }}
             </div>
+        </div>
 
-            <div class="field">
-                <div class="control">
-                    {{ form.email }}
-                </div>
+        <div class="field">
+            <div class="control">
+                {{ form.email }}
             </div>
-            <div class="field">
-                <div class="control">
-                    {{ form.password1 }}
-                </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                {{ form.password1 }}
             </div>
-            <div class="field">
-                <div class="control">
-                    {{ form.password2 }}
-                </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                {{ form.password2 }}
             </div>
-            <button type="submit" class="button is-block is-info is-large">Sign Up</button>
-        </form>
-    </div>
-    <p class="has-text-grey">
-        Already have account? <a href="{% url 'account_login' %}">Login</a> &nbsp;·&nbsp;
-    </p>
+        </div>
+        <button type="submit" class="button is-block is-info is-large">Sign Up</button>
+    </form>
+    {% endblock form_body %}
 </div>
-</div>
-</div>
-{% endblock content %}
+<p class="has-text-grey">
+    Already have account? <a href="{% url 'account_login' %}">Login</a> &nbsp;·&nbsp;
+</p>
