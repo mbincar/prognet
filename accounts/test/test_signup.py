@@ -1,8 +1,9 @@
-from allauth.account.models import EmailAddress
+from allauth.account.models import EmailAddress, EmailConfirmation
 from allauth.utils import get_user_model
 from django.core import mail
 from django.shortcuts import reverse
 from django.test import TestCase
+from django.utils.timezone import now
 
 from .. import forms
 
@@ -123,3 +124,57 @@ class SignupTestCase(TestCase):
         self.assertEqual(
             str(messages[0]),
             'Confirmation e-mail sent to %s.' % (self.user_data['email']))
+
+    def test_email_address_is_unverified_after_signup(self):
+        self.client.post(reverse('account_signup'), data={
+            'username': self.user_data['username'],
+            'email': self.user_data['email'],
+            'password1': self.user_data['password'],
+            'password2': self.user_data['password']})
+        email = EmailAddress.objects.get(email=self.user_data['email'])
+        self.assertFalse(email.verified)
+
+    def test_primary_email_is_set_on_signup(self):
+        self.client.post(reverse('account_signup'), data={
+            'username': self.user_data['username'],
+            'email': self.user_data['email'],
+            'password1': self.user_data['password'],
+            'password2': self.user_data['password']})
+        email = EmailAddress.objects.get(email=self.user_data['email'])
+        self.assertTrue(email.primary)
+
+    def test_email_confirmation_token(self):
+        self.client.post(reverse('account_signup'), data={
+            'username': self.user_data['username'],
+            'email': self.user_data['email'],
+            'password1': self.user_data['password'],
+            'password2': self.user_data['password']})
+        self.assertEqual(len(mail.outbox), 1)
+        email = EmailAddress.objects.get(email=self.user_data['email'])
+        confirmation = EmailConfirmation.create(email)
+        confirmation.sent = now()
+        confirmation.save()
+        self.client.post(reverse(
+            'account_confirm_email', args=[confirmation.key]))
+        email = EmailAddress.objects.get(pk=email.pk)
+        self.assertTrue(email.verified)
+
+    def test_confirmation_email_sent_on_login_with_unverified_email(self):
+        response = self.client.post(reverse('account_signup'), data={
+            'username': self.user_data['username'],
+            'email': self.user_data['email'],
+            'password1': self.user_data['password'],
+            'password2': self.user_data['password']})
+        self.assertRedirects(
+            response,
+            reverse('account_email_verification_sent'))
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].to, [self.user_data['email']])
+        response = self.client.post(reverse('account_login'), data={
+            'login': self.user_data['username'],
+            'password': self.user_data['password']})
+        self.assertRedirects(
+            response,
+            reverse('account_email_verification_sent'))
+        self.assertEqual(len(mail.outbox), 2)
+        self.assertEqual(mail.outbox[1].to, [self.user_data['email']])
