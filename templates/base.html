@@ -49,28 +49,43 @@
                     </div>
 
                     <div class="navbar-end">
+                        {% if user.is_authenticated %}
+                        <div class="navbar-item has-dropdown">
+                            <a href="#" class="navbar-link">{{ user.username }}</a>
+                            <div class="navbar-dropdown">
+                                {% if user.is_superuser %}
+                                <a href="{% url 'admin:index' %}" class="navbar-item">Dashboard</a>
+                                {% endif %}
+                                <a href="{% url 'account_logout' %}" class="navbar-item">
+                                    <span class="icon">
+                                        <i class="fa fa-sign-out"></i>
+                                        <span>Logout</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        {% else %}
                         <div class="navbar-item">
                             <div class="field is-grouped">
                                 <p class="control">
-                                    <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="#">
+                                    <a id="signup_link" class="bd-tw-button button" href="{% url 'account_signup' %}">
                                         <span class="icon">
-                                            <i class="fa fa-envelope-o"></i>
+                                            <i class="fa fa-user"></i>
                                         </span>
-                                        <span>
-                                            Contact Us
-                                        </span>
+                                        <span>Sign Up</span>
                                     </a>
                                 </p>
                                 <p class="control">
-                                    <a class="button is-info" href="#">
+                                    <a id="login_link" class="button is-info" href="{% url 'account_login' %}">
                                         <span class="icon">
-                                            <i class="fa fa-download"></i>
+                                            <i class="fa fa-sign-in"></i>
                                         </span>
-                                        <span>Download</span>
+                                        <span>Login</span>
                                     </a>
                                 </p>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </nav>
