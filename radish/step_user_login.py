@@ -80,6 +80,8 @@ class LoginWithInvalidUsername:
 
     def notified_about_invalid_username_password(self, step: Step):
         """I should be notified about invalid username/password"""
+        body = wait_for_element(
+            step.context.browser, 'find_element_by_tag_name', 'body')
         from django.shortcuts import reverse
         current_url = str(step.context.browser.current_url)
         base_url = step.context.base_url
@@ -87,7 +89,7 @@ class LoginWithInvalidUsername:
             current_url,
             equal_to(base_url + reverse('account_login')))
         assert_that(
-            step.context.browser.body.text,
+            body.text,
             contains_string("The username and/or "
                             "password you specified are not correct."))
 
@@ -112,6 +114,8 @@ class LoginWithInvalidEmail:
 
     def notified_about_invalid_email_password(self, step: Step):
         """I should be notified about invalid email/password"""
+        body = wait_for_element(
+            step.context.browser, 'find_element_by_tag_name', 'body')
         from django.shortcuts import reverse
         current_url = str(step.context.browser.current_url)
         base_url = step.context.base_url
@@ -119,7 +123,7 @@ class LoginWithInvalidEmail:
             current_url,
             equal_to(base_url + reverse('account_login')))
         assert_that(
-            step.context.browser.body.text,
+            body.text,
             contains_string("The e-mail address and/or "
                             "password you specified are not correct."))
 
