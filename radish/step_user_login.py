@@ -85,7 +85,7 @@ class LoginWithInvalidUsername:
         base_url = step.context.base_url
         assert_that(
             current_url,
-            equal_to(base_url + "/" + reverse('account_login')))
+            equal_to(base_url + reverse('account_login')))
         assert_that(
             step.context.browser.body.text,
             contains_string("The username and/or "
@@ -117,7 +117,7 @@ class LoginWithInvalidEmail:
         base_url = step.context.base_url
         assert_that(
             current_url,
-            equal_to(base_url + "/" + reverse('account_login')))
+            equal_to(base_url + reverse('account_login')))
         assert_that(
             step.context.browser.body.text,
             contains_string("The e-mail address and/or "
