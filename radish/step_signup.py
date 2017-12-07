@@ -28,10 +28,10 @@ class SignupWithDuplicateUsername:
 
     def go_to_signup_page(self, step):
         """I go to home page and click sign on up link"""
-        find_by_link = Chrome.find_element_by_link_text.__name__
+        find_by_id = Chrome.find_element_by_id.__name__
         step.context.browser.get(step.context.base_url)
         signup_link = wait_for_element(
-            step.context.browser, find_by_link, 'Sign Up')
+            step.context.browser, find_by_id, 'signup_link')
         signup_link.click()
 
     def submit_invalid_data(self, step):
