@@ -161,6 +161,8 @@ AUTHENTICATION_BACKENDS = [
 ACCOUNT_FORMS = {
     'login': 'accounts.forms.LoginForm',
     'signup': 'accounts.forms.SignupForm',
+    'reset_password': 'accounts.forms.ResetPasswordForm',
+    'reset_password_from_key': 'accounts.forms.ResetPasswordKeyForm',
 }
 
 LOGIN_REDIRECT_URL = '/'
