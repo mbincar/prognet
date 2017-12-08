@@ -44,22 +44,61 @@ class ResetPasswordTestCase(TestCase):
             form.errors['email'],
             ['The e-mail address is not assigned to any user account'])
 
-    def test_invalid_reset_password_flow(self):
+    def test_invalid_email_on_reset_password_flow(self):
         self.create_user(self.user_data)
         response = self.client.post(
             reverse('account_reset_password'),
             data={'email': self.user_data['email'] + 'doe'})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'account/password_reset.html')
+        self.assertFalse(response.context_data['form'].is_valid())
+        self.assertFormError(
+            response, 'form', 'email',
+            "The e-mail address is not assigned to any user account")
+
+    def test_unmatch_password_on_reset_password_flow(self):
+        self.create_user(self.user_data)
+        # Request new password
+        response = self.client.post(
+            reverse('account_reset_password'),
+            data={'email': self.user_data['email']})
+        self.assertRedirects(
+            response, reverse('account_reset_password_done'))
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].to, [self.user_data['email']])
+        body = mail.outbox[0].body
+        self.assertGreater(body.find('http://'), 0)
+
+        # Extract URL for password_reset_from_key view and accesst it
+        url = body[body.find(
+            str(reverse('account_reset_password'))):].split()[0]
+        response = self.client.get(url)
+
+        # Follow the redirect the actual password reset page with the key
+        # hidden.
+        url = response.url
+        response = self.client.get(url)
+        self.assertTemplateUsed('account_reset_password_from_key.html')
+        self.assertFalse('token_fail' in response.context_data)
+
+        # Try to submit unmatch new password
+        response = self.client.post(url, data={
+            'password1': self.user_data['password'] + 'new123',
+            'password2': self.user_data['password'] + 'new321'})
+        self.assertFalse(response.context_data['form'].is_valid())
+        self.assertFormError(
+            response, 'form', 'password2',
+            'You must type the same password each time.')
 
     def test_valid_reset_password_flow(self):
         user = self.create_user(self.user_data)
         # Request new password
-        self.client.post(
+        response = self.client.post(
             reverse('account_reset_password'),
             data={'email': self.user_data['email']})
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].to, [self.user_data['email']])
+        self.assertRedirects(response, reverse('account_reset_password_done'))
         body = mail.outbox[0].body
         self.assertGreater(body.find('http://'), 0)
 
