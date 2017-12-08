@@ -82,7 +82,8 @@ class LoginTestCase(TestCase):
         self.assertEqual(len(form.non_field_errors()), 1)
         self.assertEqual(
             form.non_field_errors()[0],
-            'The e-mail address and/or password you specified are not correct.')
+            "The e-mail address and/or "
+            "password you specified are not correct.")
 
     def test_django_message_on_valid_login(self):
         self.create_user(self.user_data)
@@ -99,4 +100,5 @@ class LoginTestCase(TestCase):
         self.create_user(self.user_data)
         response = self.client.get(reverse('account_change_password'))
         self.assertRedirects(response, reverse(
-            'account_login') + "?next=%s" % (reverse('account_change_password')))
+            'account_login') +
+            "?next=%s" % (reverse('account_change_password')))

@@ -20,3 +20,18 @@ class SignupForm(forms.SignupForm):
         self.fields['email'].widget.attrs['class'] = attrs_login['class']
         self.fields['password1'].widget.attrs['class'] = attrs_login['class']
         self.fields['password2'].widget.attrs['class'] = attrs_login['class']
+
+
+class ResetPasswordForm(forms.ResetPasswordForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs['class'] = attrs_login['class']
+
+
+class ResetPasswordKeyForm(forms.ResetPasswordKeyForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs['class'] = attrs_login['class']
+        self.fields['password2'].widget.attrs['class'] = attrs_login['class']
