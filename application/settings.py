@@ -163,6 +163,8 @@ ACCOUNT_FORMS = {
     'signup': 'accounts.forms.SignupForm',
     'reset_password': 'accounts.forms.ResetPasswordForm',
     'reset_password_from_key': 'accounts.forms.ResetPasswordKeyForm',
+    'change_password': 'accounts.forms.ChangePasswordForm',
+    'set_password': 'accounts.forms.SetPasswordForm',
 }
 
 LOGIN_REDIRECT_URL = '/'

@@ -35,3 +35,18 @@ class ResetPasswordKeyForm(forms.ResetPasswordKeyForm):
         super().__init__(*args, **kwargs)
         self.fields['password1'].widget.attrs['class'] = attrs_login['class']
         self.fields['password2'].widget.attrs['class'] = attrs_login['class']
+
+
+class ChangePasswordForm(forms.ChangePasswordForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs['class'] = attrs_login['class']
+        self.fields['password2'].widget.attrs['class'] = attrs_login['class']
+
+
+class SetPasswordForm(forms.SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs['class'] = attrs_login['class']
+        self.fields['password2'].widget.attrs['class'] = attrs_login['class']
