@@ -97,9 +97,6 @@ class ResetPasswordStep:
         body = wait_for_element(browser, 'find_element_by_tag_name', 'body')
         current_url = str(step.context.browser.current_url).rstrip('/')
         assert_that(current_url, equal_to(step.context.base_url))
-        assert_that(
-            body.text,
-            contains_string(step.context.user_data['username']))
 
 
 @steps
