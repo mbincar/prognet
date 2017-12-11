@@ -41,6 +41,7 @@ class ChangePasswordForm(forms.ChangePasswordForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['oldpassword'].widget.attrs['class'] = attrs_login['class']
         self.fields['password1'].widget.attrs['class'] = attrs_login['class']
         self.fields['password2'].widget.attrs['class'] = attrs_login['class']
 
