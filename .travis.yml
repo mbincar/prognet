@@ -21,6 +21,10 @@ before_install:
 install:
   - pip install -r requirements/dev.txt
 
+cache:
+  directories:
+    - $HOME/.cache/pip
+
 before_script:
   - mysql -e 'CREATE DATABASE prognet_db;'
   - mysql -e 'CREATE DATABASE test_prognet_db;'
