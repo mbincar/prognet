@@ -20,7 +20,7 @@ class ResetPasswordStep:
         find_by_link = Chrome.find_element_by_link_text.__name__
         browser = step.context.browser
         step.context.reset_link = wait_for_element(
-            browser, find_by_link, 'Forgot Password')
+            browser, find_by_link, 'Forgot Password?')
 
     def click_reset_link(self, step):
         """I click on reset password link"""
