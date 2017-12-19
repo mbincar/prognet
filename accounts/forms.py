@@ -1,7 +1,7 @@
 from allauth.account import forms
 
-attrs_login = {'class': 'input is-large'}
-attrs_focus = {'class': 'input is-large', 'autofocus': ''}
+attrs_login = {'class': 'form-control'}
+attrs_focus = {'class': 'form-control', 'autofocus': ''}
 
 
 class LoginForm(forms.LoginForm):

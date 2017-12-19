@@ -5,58 +5,52 @@ Sign Up - MV Shop
 {% endblock title %}
 
 {% block form_header %}
-<h3 class="title has-text-grey">Sign Up</h3>
-<p class="subtitle has-text-grey">Sign up to register your account.</p>
+<h1 class="text-center auth-title">Sign Up</h1>
 {% endblock form_header %}
-<div class="box">
-    {% block form_body %}
-    <form action="{% url 'account_signup' %}" method="post">
-        {% csrf_token %}
-        <div class="field">
-            <div class="control">
-                {{ form.username }}
-            </div>
-            {% if form.username.errors  %}
-            {% for error in form.username.errors %}
-            <p class="help is-danger">{{ error }}</p>
-            {% endfor %}
-            {% endif %}
-        </div>
 
-        <div class="field">
-            <div class="control">
-                {{ form.email }}
-            </div>
-            {% if form.email.errors  %}
-            {% for error in form.email.errors %}
-            <p class="help is-danger">{{ error }}</p>
-            {% endfor %}
-            {% endif %}
-        </div>
-        <div class="field">
-            <div class="control">
-                {{ form.password1 }}
-            </div>
-        </div>
-        <div class="field">
-            <div class="control">
-                {{ form.password2 }}
-            </div>
-            {% if form.password2.errors  %}
-            {% for error in form.password2.errors %}
-            <p class="help is-danger">{{ error }}</p>
-            {% endfor %}
-            {% endif %}
-        </div>
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+{% block form_body %}
+<form action="{% url 'account_signup' %}" class="form-signin" method="post">
+    {% csrf_token %}
+    <div class="form-group{% if form.username.errors %} has-error{% endif %}">
+        {{ form.username }}
+        {% if form.username.errors %}
+        {% for error in form.username.errors  %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
         {% endif %}
-        <button type="submit" class="button is-block is-info is-large">Sign Up</button>
-    </form>
-    {% endblock form_body %}
-</div>
+    </div>
+    <div class="form-group{% if form.email.errors %} has-error{% endif %}">
+        {{ form.email }}
+        {% if form.email.errors %}
+        {% for error in form.email.errors  %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="form-group{% if form.password1.errors %} has-error{% endif %}">
+        {{ form.password1 }}
+        {% if form.password1.errors  %}
+        {% for error in form.password1.erros  %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="form-group{% if form.password2.errors %} has-error has-feedback{% endif %}">
+        {{ form.password2 }}
+        {% if form.password2.errors  %}
+        {% for error in form.password2.errors  %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+        Sign up</button>
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+</form>
+{% endblock form_body %}
+
 {% block form_footer %}
-<p class="has-text-grey">
-    Already have account? <a href="{% url 'account_login' %}">Login</a> &nbsp;·&nbsp;
-</p>
+<p class="text-center">Already have an account? <a href="{% url 'account_login' %}">Login</a></p>
 {% endblock form_footer %}

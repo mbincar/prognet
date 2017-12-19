@@ -5,45 +5,27 @@ Login - MV Shop
 {% endblock title %}
 
 {% block form_header %}
-<h3 class="title has-text-grey">Login</h3>
-<p class="subtitle has-text-grey">Please login to proceed.</p>
+<h2 class="text-center auth-title">Login</h2>
 {% endblock form_header %}
-<div class="box">
-    {% block form_image %}
-    <figure class="avatar">
-        <img src="https://placehold.it/128x128">
-    </figure>
-    {% endblock form_image %}
-    {% block form_body %}
-    <form action="{% url 'account_login' %}" method="post">
-        {% csrf_token %}
-        <div class="field">
-            <div class="control">
-                {{ form.login }}
-            </div>
-        </div>
 
-        <div class="field">
-            <div class="control">
-                {{ form.password }}
-            </div>
-        </div>
-        <div class="field">
-            <label class="checkbox">
-                {{ form.remember }} Remember me
-            </label>
-        </div>
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-        <button type="submit" class="button is-block is-info is-large">Login</button>
-    </form>
-    {% endblock form_body %}
-</div>
+{% block form_body %}
+<form action="" class="form-signin" action="{% url 'account_login' %}" method="post">
+    {% csrf_token %}
+    {{ form.login }}
+    {{ form.password }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+        Sign in</button>
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <label class="pull-left">
+        {{ form.remember }}
+        Remember me
+    </label>
+    <a href="{% url 'account_reset_password' %}" class="pull-right need-help">Forgot Password? </a><span class="clearfix"></span>
+</form>
+{% endblock form_body %}
+
 {% block form_footer %}
-<p class="has-text-grey">
-    <a href="{% url 'account_signup' %}">Sign Up</a> &nbsp;·&nbsp;
-    <a href="{% url 'account_reset_password' %}">Forgot Password</a> &nbsp;·&nbsp;
-    <a href="#">Need Help?</a>
-</p>
+<a href="{% url 'account_signup' %}" class="text-center new-account">Create an account</a>
 {% endblock form_footer %}
