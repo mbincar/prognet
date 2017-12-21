@@ -88,19 +88,15 @@ try:
         db_config = json.load(target)
         DATABASES = {
             'default': {
-                'ENGINE': 'django.db.backends.mysql',
+                'ENGINE': 'django.db.backends.postgresql_psycopg2',
                 'NAME': db_config["name"],
-                'USER': db_config["user"],
-                'PASSWORD': db_config["password"],
             }
         }
 except FileNotFoundError:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'prognet_db',
-            'USER': 'root',
-            'PASSWORD': '',
         }
     }
 
