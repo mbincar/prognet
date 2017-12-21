@@ -5,7 +5,7 @@ python:
 
 addons:
   chrome: stable
-  postgresql: "9.6"
+  postgresql: "9.5"
 
 env:
   - DJANGO_SETTINGS_MODULE=application.settings
