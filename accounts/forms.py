@@ -1,7 +1,7 @@
 from allauth.account import forms
 
-attrs_login = {'class': 'input is-large'}
-attrs_focus = {'class': 'input is-large', 'autofocus': ''}
+attrs_login = {'class': 'form-control'}
+attrs_focus = {'class': 'form-control', 'autofocus': ''}
 
 
 class LoginForm(forms.LoginForm):
@@ -31,6 +31,22 @@ class ResetPasswordForm(forms.ResetPasswordForm):
 
 class ResetPasswordKeyForm(forms.ResetPasswordKeyForm):
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs['class'] = attrs_login['class']
+        self.fields['password2'].widget.attrs['class'] = attrs_login['class']
+
+
+class ChangePasswordForm(forms.ChangePasswordForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['oldpassword'].widget.attrs['class'] = attrs_login['class']
+        self.fields['password1'].widget.attrs['class'] = attrs_login['class']
+        self.fields['password2'].widget.attrs['class'] = attrs_login['class']
+
+
+class SetPasswordForm(forms.SetPasswordForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password1'].widget.attrs['class'] = attrs_login['class']
